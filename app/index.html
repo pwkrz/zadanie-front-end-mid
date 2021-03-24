@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/all.css">
 </head>
 
-<body class="bg-secondary">
+<body class="bg-light">
   <script src="js/scripts.js"></script>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -18,7 +18,6 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -32,7 +31,26 @@
       </div>
     </nav>
   </header>
-  <main></main>
+  <main>
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-9">
+          <h4 class="text-dark"><span id="resultCount"></span> results</h5>
+        </div>
+        <div class="col-3">
+          <select class="ml-auto custom-select custom-select-sm">
+            <option selected>Sortuj wg.: Cena (rosnąco)</option>
+            <option value="1">Sortuj wg.: Cena (malejąco)</option>
+            <option value="2">Sortuj wg.: Nazwa (rosnąco)</option>
+            <option value="3">Sortuj wg.: Nazwa (malejąco)</option>
+          </select>
+        </div>
+      </div>
+      <div id="productListWrapper" class="row">
+        
+      </div>
+    </div>
+  </main>
   <footer class="fixed-bottom">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
