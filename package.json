@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/wskz/zadanie-front-end-mid#readme",
   "devDependencies": {
+    "bootstrap": "^4.6.0",
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0",
     "gulp-typescript": "^6.0.0-alpha.1",
