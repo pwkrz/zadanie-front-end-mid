@@ -6,6 +6,11 @@ sass.compiler = require('node-sass');
 
 const ts = require('gulp-typescript');
 
+gulp.task('copyData', function() {
+    return gulp.src('./src/data/**')
+        .pipe(gulp.dest('./app/data'));
+})
+
 gulp.task('sass', function () {
     return gulp.src('./src/scss/all.scss')
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
@@ -16,6 +21,7 @@ gulp.task('scripts', function () {
     return gulp.src('src/js/**/*.ts')
         .pipe(ts({
             noImplicitAny: true,
+            module: "system",
             outFile: 'scripts.js',
             target: 'ES6',
             removeComments: true
