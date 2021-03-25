@@ -25,7 +25,8 @@ const createElement = (nodeName: string, attrMap: {[attrName: string]: string}):
     return _element;
 }
 // -----------------
-const productListWrapper: HTMLDivElement = document.querySelector('#productListWrapper');
+const ProductListWrapper: HTMLDivElement = document.querySelector('#productListWrapper');
+const ResultCount: HTMLSpanElement = document.querySelector('#resultCount');
 
 const generateProductCard = (productInfo: any): HTMLDivElement => {
     let _card = createElement('div', {
@@ -45,8 +46,12 @@ const populateProductList = (productList: any[]) => {
     productList.forEach(el => {
         let card = generateProductCard(el);
         let cardColumn = generateProductCardColumn(card);
-        productListWrapper.appendChild(cardColumn);
+        ProductListWrapper.appendChild(cardColumn);
     })
+}
+
+const populateResultCount = (count: number) => {
+    ResultCount.innerText = count.toString();
 }
 
 getData()
@@ -54,6 +59,6 @@ getData()
         let productsList = JSON.parse(response.responseText);
         console.log(productsList);
         populateProductList(productsList);
-        // populateResultCount(productsList.length)
+        populateResultCount(productsList.length)
     })
     .catch(err => console.log('app', err))
