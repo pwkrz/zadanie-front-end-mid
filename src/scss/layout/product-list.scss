@@ -16,7 +16,7 @@
 // --------------------------------
 // List (as opposed to Grid) styles
 // --------------------------------
-.product-list--list {
+@mixin product-list-list {
     .product-card__wrapper {
         flex: 0 0 100% !important;
         max-width: 100% !important;
@@ -33,4 +33,13 @@
             }
         }
     }
-} 
+}
+
+.product-list.product-list--list {
+    @include product-list-list;
+}
+.product-list {
+    @media (max-width: 767.98px) {
+        @include product-list-list;
+    }
+}

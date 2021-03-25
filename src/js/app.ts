@@ -104,7 +104,7 @@ const generateProductCard = (productInfo: any): HTMLDivElement => {
 }
 
 const generateProductCardColumn = (card: HTMLDivElement): HTMLDivElement => {
-    let _cardColumn = createElement('div', {class: 'product-card__wrapper col-4'});
+    let _cardColumn = createElement('div', {class: 'product-card__wrapper col-lg-4 col-md-6 col-sm-12'});
     _cardColumn.appendChild(card);
     return <HTMLDivElement>_cardColumn;
 }
