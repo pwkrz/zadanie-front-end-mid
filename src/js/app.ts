@@ -76,7 +76,7 @@ GridListToggler.addEventListener('click', handleGridListToggle, true);
 const generateProductCard = (productInfo: any): HTMLDivElement => {
     let _card = createElement('div', {
         class: 'product-card card shadow-sm mb-4',
-        title: window.location + '/' + productInfo.url
+        title: window.location + productInfo.url
     });
     let _productName = applySentenceCase(productInfo.name);
     _card.innerHTML = `
