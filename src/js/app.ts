@@ -31,12 +31,13 @@ const ResultCount: HTMLSpanElement = document.querySelector('#resultCount');
 
 const generateProductCard = (productInfo: any): HTMLDivElement => {
     let _card = createElement('div', {
-        class: 'product-card card mb-4',
+        class: 'product-card card shadow-sm mb-4',
+        title: productInfo.url
     });
     let _productName = applySentenceCase(productInfo.name);
     _card.innerHTML = `
         <div class="product-card__wishlist-button position-absolute">
-            <button class="product-card__wishlist-button--button btn bg-white rounded-circle">
+            <button class="product-card__wishlist-button--button btn bg-white rounded-circle" data-id=${productInfo._id}>
                 <span class="product-card__wishlist-button--icon text-danger">${ productInfo.isFav ? '&#9829;' : '&#9825;'}</span>
             </button>
         </div>
@@ -69,6 +70,7 @@ const populateProductList = (productList: any[]) => {
         let card = generateProductCard(el);
         let cardColumn = generateProductCardColumn(card);
         ProductListWrapper.appendChild(cardColumn);
+        card.addEventListener('click', () => window.location.assign('/' + el.url));
     })
 }
 
