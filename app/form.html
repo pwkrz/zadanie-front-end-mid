@@ -36,31 +36,31 @@
           <div class="form-group col-md-4">
             <label for="inputFirstName">First name</label>
             <input type="text" name="firstName" class="form-control" id="inputFirstName" placeholder="First name">
-            <div class="invalid-feedback"></div>
+            <small class="invalid-feedback">The first name must be min. 3 characters long. Only letters allowed.</small>
           </div>
           <div class="form-group col-md-6 offset-md-2">
             <label for="inputLastName">Last name</label>
             <input type="text" name="lastName" class="form-control" id="inputLastName" placeholder="Last name">
-            <div class="invalid-feedback"></div>
+            <small class="invalid-feedback">The last name must be min. 3 characters long. Only letters allowed.</small>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-7">
             <label for="inputEmail">Email</label>
             <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
-            <div class="invalid-feedback"></div>
+            <small class="invalid-feedback">The email address must be in the correct format, e.g. John.Doe@example.com</small>
           </div>
           <div class="form-group col-md-4 offset-md-1">
             <label for="inputPhone">Phone number</label>
             <input type="tel" name="phone" class="form-control" id="inputPhone" placeholder="Phone number">
-            <div class="invalid-feedback"></div>
+            <small class="invalid-feedback">The phone number must be in the correct format: +48xxx-xxx-xxx or xxx-xxx-xxx</small>
           </div>
         </div>
         <div class="form-row mb-4">
           <div class="form-group col-md-6">
             <label for="inputPassword">Password</label>
             <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
-            <div class="invalid-feedback"></div>
+            <small class="invalid-feedback">The password must be min. 8 characters long and contain 1 number, 1 special character and 1 capital letter.</small>
           </div>
         </div>
         <button type="submit" name="submit" class="btn btn-primary">Sign in</button>
