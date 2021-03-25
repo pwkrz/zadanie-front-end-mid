@@ -26,8 +26,46 @@ const createElement = (nodeName: string, attrMap: {[attrName: string]: string}):
 }
 const applySentenceCase = (string: string) => (string[0].toUpperCase() + string.slice(1));
 // -----------------
+// 
+// -----------------
+// DOM Elements
+// -----------------
 const ProductListWrapper: HTMLDivElement = document.querySelector('#productListWrapper');
 const ResultCount: HTMLSpanElement = document.querySelector('#resultCount');
+const GridListToggler: HTMLSpanElement = document.querySelector('#gridListToggle');
+// -----------------
+// Grid/List Toggler
+// -----------------
+const handleGridListToggleClasses = (button: HTMLButtonElement) => {
+    let _sibling = button.nextElementSibling ? button.nextElementSibling : button.previousElementSibling;
+    _sibling.classList.remove('btn-info');
+    _sibling.classList.add('btn-outline-info');
+    button.classList.remove('btn-outline-info');
+    button.classList.add('btn-info')
+}
+
+const handleGridListToggle = (e: MouseEvent) => {
+    e.stopPropagation();
+    let button = (<HTMLButtonElement>e.target);
+    handleGridListToggleClasses(button);
+    let display = button.dataset.display;
+    let isGrid = !ProductListWrapper.classList.contains('product-list--list');
+    if (display === 'list' && isGrid) {
+        ProductListWrapper.classList.add('product-list--list');
+    } else if (display === 'grid' && !isGrid) {
+        ProductListWrapper.classList.remove('product-list--list');
+    } else {
+        return;
+    }
+}
+
+const enableGirdListToggle = () => {
+    GridListToggler.querySelectorAll('button').forEach(el => {
+        el.hasAttribute('disabled') && el.removeAttribute('disabled');
+    })
+}
+
+GridListToggler.addEventListener('click', handleGridListToggle, true);
 
 const generateProductCard = (productInfo: any): HTMLDivElement => {
     let _card = createElement('div', {
@@ -41,7 +79,7 @@ const generateProductCard = (productInfo: any): HTMLDivElement => {
                 <span class="product-card__wishlist-button--icon text-danger">${ productInfo.isFav ? '&#9829;' : '&#9825;'}</span>
             </button>
         </div>
-        <img src="${productInfo.picture}" class="card-img-top" alt="${_productName}">
+        <img src="${productInfo.picture}" class="product-card__image card-img-top" alt="${_productName}">
         <div class="card-body">
             <h5 class="card-title text-secondary mb-0">${_productName}</h5>
             <p class="mb-2">
@@ -60,17 +98,20 @@ const generateProductCard = (productInfo: any): HTMLDivElement => {
 }
 
 const generateProductCardColumn = (card: HTMLDivElement): HTMLDivElement => {
-    let _cardColumn = createElement('div', {class: 'col-4'});
+    let _cardColumn = createElement('div', {class: 'product-card__wrapper col-4'});
     _cardColumn.appendChild(card);
     return <HTMLDivElement>_cardColumn;
 }
 
 const populateProductList = (productList: any[]) => {
-    productList.forEach(el => {
+    productList.forEach((el, i) => {
         let card = generateProductCard(el);
         let cardColumn = generateProductCardColumn(card);
         ProductListWrapper.appendChild(cardColumn);
         card.addEventListener('click', () => window.location.assign('/' + el.url));
+        if (i+1 === productList.length) {
+            enableGirdListToggle();
+        }
     })
 }
 

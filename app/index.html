@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/all.css">
 </head>
 
-<body class="bg-light">
+<body class="overflow-x-hidden bg-light">
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
@@ -32,6 +32,15 @@
   </header>
   <main>
     <div class="container py-5">
+      <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-end align-items-center">
+          <span class="ml-auto mr-2">Display as:</span>
+          <div id="gridListToggle" class="btn-group btn-group-sm" role="group">
+            <button type="button" disabled class="btn btn-outline-info" data-display="list">List</button>
+            <button type="button" disabled class="btn btn-info" data-display="grid">Grid</button>
+          </div>
+        </div>
+      </div>
       <div class="row mb-4">
         <div class="col-9">
           <h4 class="text-dark"><span id="resultCount"></span> results</h5>

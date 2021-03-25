@@ -13,3 +13,24 @@
     font-size: 2em;
     line-height: 1.1em;
 }
+// --------------------------------
+// List (as opposed to Grid) styles
+// --------------------------------
+.product-list--list {
+    .product-card__wrapper {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+
+        .product-card {
+            flex-direction: row !important;
+            align-items: center;
+            justify-content: space-between;
+
+            .product-card__image {
+                width: 90px;
+                height: 90px;
+                margin-left: 1em;
+            }
+        }
+    }
+} 
