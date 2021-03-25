@@ -1,17 +1,22 @@
 .product-card {
     cursor: pointer;
-}
-.product-card__wishlist-button {
-    top: .5em;
-    right: .5em;
-    z-index: 100;
-}
-.product-card__wishlist-button--button {
-    padding: revert;
-}
-.product-card__wishlist-button--icon {
-    font-size: 2em;
-    line-height: 1.1em;
+
+    .product-card__wishlist-button {
+        top: .5em;
+        right: .5em;
+        z-index: 100;
+    }
+    .product-card__wishlist-button--button {
+        padding: revert;
+    }
+    .product-card__wishlist-button--icon {
+        font-size: 2em;
+        line-height: 1.1em;
+    }
+
+    .product-card__info__product-size {
+        font-family: 'Times New Roman', Times, serif !important;
+    }
 }
 // --------------------------------
 // List (as opposed to Grid) styles

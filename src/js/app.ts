@@ -86,10 +86,10 @@ const generateProductCard = (productInfo: any): HTMLDivElement => {
             </button>
         </div>
         <img src="${productInfo.picture}" class="product-card__image card-img-top" alt="${_productName}">
-        <div class="card-body">
+        <div class="product-card__info card-body">
             <h5 class="card-title text-secondary mb-0">${_productName}</h5>
             <p class="mb-2">
-                <small class="card-text">${productInfo.size}
+                <small class="product-card__info__product-size card-text">${productInfo.size}
                     <span class="rating text-danger">${'&#9733;'.repeat(productInfo.rating)}</span>
                 </small>
             </p>
