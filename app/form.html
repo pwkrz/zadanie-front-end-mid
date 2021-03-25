@@ -31,34 +31,39 @@
   <main>
     <div class="container py-5">
       <h2 class="mb-5">Registration form</h2>
-      <form class="pb-5">
+      <form id="registrationForm" class="pb-5" novalidate>
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="inputFirstName">First name</label>
-            <input type="email" name="firstName" class="form-control" id="inputFirstName" placeholder="First name">
+            <input type="text" name="firstName" class="form-control" id="inputFirstName" placeholder="First name">
+            <div class="invalid-feedback"></div>
           </div>
           <div class="form-group col-md-6 offset-md-2">
             <label for="inputLastName">Last name</label>
-            <input type="password" name="lastName" class="form-control" id="inputLastName" placeholder="Last name">
+            <input type="text" name="lastName" class="form-control" id="inputLastName" placeholder="Last name">
+            <div class="invalid-feedback"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-7">
             <label for="inputEmail">Email</label>
             <input type="email" name="email" class="form-control" id="inputEmail" placeholder="Email">
+            <div class="invalid-feedback"></div>
           </div>
           <div class="form-group col-md-4 offset-md-1">
             <label for="inputPhone">Phone number</label>
             <input type="tel" name="phone" class="form-control" id="inputPhone" placeholder="Phone number">
+            <div class="invalid-feedback"></div>
           </div>
         </div>
         <div class="form-row mb-4">
           <div class="form-group col-md-6">
             <label for="inputPassword">Password</label>
             <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+            <div class="invalid-feedback"></div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Sign in</button>
+        <button type="submit" name="submit" class="btn btn-primary">Sign in</button>
       </form>
     </div>
   </main>
