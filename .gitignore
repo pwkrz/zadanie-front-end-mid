@@ -1,4 +1,6 @@
 node_modules
 .idea
 # Skopiowany plik z danymi
+app/css/
 app/data
+app/js/
