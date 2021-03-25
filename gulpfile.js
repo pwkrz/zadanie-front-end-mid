@@ -22,7 +22,6 @@ gulp.task('scripts', function () {
         .pipe(ts({
             noImplicitAny: true,
             module: "system",
-            outFile: 'scripts.js',
             target: 'ES6',
             removeComments: true
         }))
