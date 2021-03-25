@@ -1,4 +1,4 @@
-const GetData = () => {
+const getData = () => {
     return new Promise((resolve, reject) => {
         var request = new XMLHttpRequest();
         request.onload = () => {
@@ -11,19 +11,37 @@ const GetData = () => {
         request.send();
     });
 };
-const ProductListWrapper = document.querySelector('#productListWrapper');
-const createProductCards = (productList) => {
+const createElement = (nodeName, attrMap) => {
+    let _element = document.createElement(nodeName);
+    Object.keys(attrMap).forEach(attrName => {
+        _element.setAttribute(attrName, attrMap[attrName]);
+    });
+    return _element;
+};
+const productListWrapper = document.querySelector('#productListWrapper');
+const generateProductCard = (productInfo) => {
+    let _card = createElement('div', {
+        class: 'card',
+    });
+    _card.innerText = productInfo.name;
+    return _card;
+};
+const generateProductCardColumn = (card) => {
+    let _cardColumn = createElement('div', { class: 'col-4' });
+    _cardColumn.appendChild(card);
+    return _cardColumn;
+};
+const populateProductList = (productList) => {
     productList.forEach(el => {
-        let card = document.createElement('div');
-        card.classList.add('card', 'col-4');
-        card.innerText = el.name;
-        ProductListWrapper.appendChild(card);
+        let card = generateProductCard(el);
+        let cardColumn = generateProductCardColumn(card);
+        productListWrapper.appendChild(cardColumn);
     });
 };
-GetData()
+getData()
     .then((response) => {
     let productsList = JSON.parse(response.responseText);
     console.log(productsList);
-    createProductCards(productsList);
+    populateProductList(productsList);
 })
     .catch(err => console.log('app', err));
