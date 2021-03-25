@@ -18,12 +18,31 @@ const createElement = (nodeName, attrMap) => {
     });
     return _element;
 };
-const productListWrapper = document.querySelector('#productListWrapper');
+const applySentenceCase = (string) => (string[0].toUpperCase() + string.slice(1));
+const ProductListWrapper = document.querySelector('#productListWrapper');
+const ResultCount = document.querySelector('#resultCount');
 const generateProductCard = (productInfo) => {
     let _card = createElement('div', {
-        class: 'card',
+        class: 'card mb-4',
     });
-    _card.innerText = productInfo.name;
+    let _productName = applySentenceCase(productInfo.name);
+    _card.innerHTML = `
+        <img src="${productInfo.picture}" class="card-img-top" alt="${_productName}">
+        <div class="card-body">
+            <h5 class="card-title text-secondary mb-0">${_productName}</h5>
+            <p class="mb-2">
+                <small class="card-text">${productInfo.size}
+                    <span class="rating text-danger">${'&#9733;'.repeat(productInfo.rating)}</span>
+                </small>
+            </p>
+            <div class="d-flex align-items-baseline">
+                <h3 class="float-left mr-2">${productInfo.price}</h3>
+                <small class="text-muted font-weight-light mr-2"><s>${productInfo.oldPrice ? productInfo.oldPrice : ''}</s></small>
+                <small class="text-danger font-weight-light">${productInfo.oldPrice ? ('You save ' + productInfo.savings) : ''}</small>
+            </div>
+        </div>
+        <div class="position-absolute"><span class="text-danger">${productInfo.isFav ? '&#9829;' : '&#9825;'}</span></div>
+    `;
     return _card;
 };
 const generateProductCardColumn = (card) => {
@@ -35,13 +54,17 @@ const populateProductList = (productList) => {
     productList.forEach(el => {
         let card = generateProductCard(el);
         let cardColumn = generateProductCardColumn(card);
-        productListWrapper.appendChild(cardColumn);
+        ProductListWrapper.appendChild(cardColumn);
     });
+};
+const populateResultCount = (count) => {
+    ResultCount.innerText = count.toString();
 };
 getData()
     .then((response) => {
     let productsList = JSON.parse(response.responseText);
     console.log(productsList);
     populateProductList(productsList);
+    populateResultCount(productsList.length);
 })
     .catch(err => console.log('app', err));

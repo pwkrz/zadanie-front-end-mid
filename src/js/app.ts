@@ -24,6 +24,7 @@ const createElement = (nodeName: string, attrMap: {[attrName: string]: string}):
     });
     return _element;
 }
+const applySentenceCase = (string: string) => (string[0].toUpperCase() + string.slice(1));
 // -----------------
 const ProductListWrapper: HTMLDivElement = document.querySelector('#productListWrapper');
 const ResultCount: HTMLSpanElement = document.querySelector('#resultCount');
@@ -32,7 +33,24 @@ const generateProductCard = (productInfo: any): HTMLDivElement => {
     let _card = createElement('div', {
         class: 'card mb-4',
     });
-    _card.innerText = productInfo.name;
+    let _productName = applySentenceCase(productInfo.name);
+    _card.innerHTML = `
+        <img src="${productInfo.picture}" class="card-img-top" alt="${_productName}">
+        <div class="card-body">
+            <h5 class="card-title text-secondary mb-0">${_productName}</h5>
+            <p class="mb-2">
+                <small class="card-text">${productInfo.size}
+                    <span class="rating text-danger">${'&#9733;'.repeat(productInfo.rating)}</span>
+                </small>
+            </p>
+            <div class="d-flex align-items-baseline">
+                <h3 class="float-left mr-2">${productInfo.price}</h3>
+                <small class="text-muted font-weight-light mr-2"><s>${productInfo.oldPrice ? productInfo.oldPrice : ''}</s></small>
+                <small class="text-danger font-weight-light">${productInfo.oldPrice ? ('You save ' + productInfo.savings) : ''}</small>
+            </div>
+        </div>
+        <div class="position-absolute"><span class="text-danger">${ productInfo.isFav ? '&#9829;' : '&#9825;'}</span></div>
+    `
     return <HTMLDivElement>_card;
 }
 
