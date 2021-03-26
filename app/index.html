@@ -43,11 +43,12 @@
           <h4 class="product-list-controls__result-count text-dark"><span id="resultCount"></span> results</h5>
         </div>
         <div class="col-md-3">
-          <select class="product-list-controls__sort-by ml-auto custom-select custom-select-sm">
-            <option selected>Sortuj: Cena (rosnąco)</option>
-            <option value="1">Sortuj: Cena (malejąco)</option>
-            <option value="2">Sortuj: Nazwa (rosnąco)</option>
-            <option value="3">Sortuj: Nazwa (malejąco)</option>
+          <select id="productListSorter" class="product-list-controls__sort-by ml-auto custom-select custom-select-sm">
+            <option disabled selected> -- select option -- </option>
+            <option value="price-inc">Sort by: Price (asc.)</option>
+            <option value="price-dec">Sort by: Price (desc.)</option>
+            <option value="name-inc">Sort by: Name (asc.)</option>
+            <option value="name-dec">Sort by: Name (desc.)</option>
           </select>
         </div>
       </div>

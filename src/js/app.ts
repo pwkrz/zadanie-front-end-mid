@@ -1,9 +1,8 @@
 //------------------
 // UTILS
 // -----------------
-interface ElementData {
+const convertPriceToNumber = (price: string) => Number(price.slice(1));
 
-}
 const getData = () => {
     return new Promise((resolve, reject) => {
         var request = new XMLHttpRequest();
@@ -28,11 +27,31 @@ const applySentenceCase = (string: string) => (string[0].toUpperCase() + string.
 // -----------------
 // 
 // -----------------
-// DOM Elements
+// Elements
 // -----------------
 const ProductListWrapper: HTMLDivElement = document.querySelector('#productListWrapper');
 const ResultCount: HTMLSpanElement = document.querySelector('#resultCount');
 const GridListToggler: HTMLDivElement = document.querySelector('#gridListToggle');
+// Podejście klasowe
+let productListSorter;
+// -----------------
+// 
+// -----------------
+// Data
+// -----------------
+interface Product {
+    url: string
+    rating: number,
+    name: string
+    size: string
+    picture: string
+    savings: string
+    oldPrice: string
+    price: string
+    isFav: boolean,
+    _id: string
+}
+let productsList: Product[];
 // -----------------
 //
 // -----------------
@@ -110,6 +129,7 @@ const generateProductCardColumn = (card: HTMLDivElement): HTMLDivElement => {
 }
 
 const populateProductList = (productList: any[]) => {
+    ProductListWrapper.innerHTML = '';
     productList.forEach((el, i) => {
         let card = generateProductCard(el);
         let cardColumn = generateProductCardColumn(card);
@@ -120,16 +140,47 @@ const populateProductList = (productList: any[]) => {
         }
     })
 }
-
+// -----------------
+//
+// -----------------
+// Product List Controls
+// -----------------
 const populateResultCount = (count: number) => {
     ResultCount.innerText = count.toString();
 }
 
+// Podejście klasowe
+class ProductListSorter {
+    nativeElement: HTMLSelectElement;
+    constructor(natEl: HTMLSelectElement) {
+        this.nativeElement = natEl;
+        this.nativeElement.addEventListener('change', (e: any) => this.handleChange(e))
+    }
+    handleChange(e: any) {
+        switch (e.target.value) {
+            case 'price-inc':
+                productsList.sort((a,b) => convertPriceToNumber(a.price) - convertPriceToNumber(b.price));
+                break;
+            case 'price-dec':
+                productsList.sort((a,b) => convertPriceToNumber(b.price) - convertPriceToNumber(a.price));
+                break;
+            case 'name-inc':
+                productsList.sort((a,b) => a.name.localeCompare(b.name));
+                break;
+            case 'name-dec':
+                productsList.sort((a,b) => b.name.localeCompare(a.name));
+                break;
+        }
+        populateProductList(productsList);
+    }
+
+}
+
 getData()
     .then((response: any) => {
-        let productsList = JSON.parse(response.responseText);
-        console.log(productsList);
+        productsList = JSON.parse(response.responseText);
         populateProductList(productsList);
         populateResultCount(productsList.length)
+        productListSorter = new ProductListSorter(document.querySelector('#productListSorter'));
     })
     .catch(err => console.log('app', err))
