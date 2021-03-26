@@ -27,27 +27,27 @@
       </div>
     </nav>
   </header>
-  <main>
+  <main class="products">
     <div class="container py-5">
-      <div class="d-none d-md-flex row mb-4">
-        <div class="col-12 d-flex justify-content-end align-items-center">
-          <span class="ml-auto mr-2">Display as:</span>
-          <div id="gridListToggle" class="btn-group btn-group-sm" role="group">
-            <button type="button" disabled class="btn btn-outline-info" data-display="list">List</button>
-            <button type="button" disabled class="btn btn-info" data-display="grid">Grid</button>
+      <div class="display-toggler__wrapper d-none d-md-flex row mb-4">
+        <div class="display-toggler col-12 d-flex justify-content-end align-items-center">
+          <span class="display-toggler__label ml-auto mr-2">Display as:</span>
+          <div id="gridListToggle" class="display-toggler__button-group btn-group btn-group-sm" role="group">
+            <button type="button" disabled class="display-toggler__button-group__button btn btn-outline-info" data-display="list">List</button>
+            <button type="button" disabled class="display-toggler__button-group__button btn btn-info" data-display="grid">Grid</button>
           </div>
         </div>
       </div>
-      <div class="row mb-4">
+      <div class="product-list-controls row mb-4">
         <div class="col-9">
-          <h4 class="text-dark"><span id="resultCount"></span> results</h5>
+          <h4 class="product-list-controls__result-count text-dark"><span id="resultCount"></span> results</h5>
         </div>
-        <div class="col-3">
-          <select class="ml-auto custom-select custom-select-sm">
-            <option selected>Sortuj wg.: Cena (rosnąco)</option>
-            <option value="1">Sortuj wg.: Cena (malejąco)</option>
-            <option value="2">Sortuj wg.: Nazwa (rosnąco)</option>
-            <option value="3">Sortuj wg.: Nazwa (malejąco)</option>
+        <div class="col-md-3">
+          <select class="product-list-controls__sort-by ml-auto custom-select custom-select-sm">
+            <option selected>Sortuj: Cena (rosnąco)</option>
+            <option value="1">Sortuj: Cena (malejąco)</option>
+            <option value="2">Sortuj: Nazwa (rosnąco)</option>
+            <option value="3">Sortuj: Nazwa (malejąco)</option>
           </select>
         </div>
       </div>
