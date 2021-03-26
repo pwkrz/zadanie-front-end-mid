@@ -37,6 +37,7 @@ const initializeElements = () => {
     ProductListWrapper = document.querySelector('#productListWrapper');
     ResultCount = document.querySelector('#resultCount');
     GridListToggler = document.querySelector('#gridListToggle');
+    GridListToggler.addEventListener('click', handleGridListToggle, true);
 }
 // Podejście klasowe
 let productListSorter: ProductListSorter;
@@ -92,7 +93,6 @@ const enableGirdListToggle = () => {
     })
 }
 
-GridListToggler.addEventListener('click', handleGridListToggle, true);
 // -----------------
 //
 // -----------------
