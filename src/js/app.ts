@@ -29,11 +29,17 @@ const applySentenceCase = (string: string) => (string[0].toUpperCase() + string.
 // -----------------
 // Elements
 // -----------------
-const ProductListWrapper: HTMLDivElement = document.querySelector('#productListWrapper');
-const ResultCount: HTMLSpanElement = document.querySelector('#resultCount');
-const GridListToggler: HTMLDivElement = document.querySelector('#gridListToggle');
+let ProductListWrapper: HTMLDivElement;
+let ResultCount: HTMLSpanElement;
+let GridListToggler: HTMLDivElement;
+
+const initializeElements = () => {
+    ProductListWrapper = document.querySelector('#productListWrapper');
+    ResultCount = document.querySelector('#resultCount');
+    GridListToggler = document.querySelector('#gridListToggle');
+}
 // Podejście klasowe
-let productListSorter;
+let productListSorter: ProductListSorter;
 // -----------------
 // 
 // -----------------
@@ -150,6 +156,9 @@ const populateResultCount = (count: number) => {
 }
 
 // Podejście klasowe
+// -----------------
+// SORTOWANIE
+// -----------------
 class ProductListSorter {
     nativeElement: HTMLSelectElement;
     constructor(natEl: HTMLSelectElement) {
@@ -175,12 +184,20 @@ class ProductListSorter {
     }
 
 }
+// -----------------
+// SORTOWANIE
+// -----------------
 
+
+// -----------------
+// INICJALIZACJA
+// -----------------
 getData()
     .then((response: any) => {
         productsList = JSON.parse(response.responseText);
+        initializeElements();
         populateProductList(productsList);
         populateResultCount(productsList.length)
         productListSorter = new ProductListSorter(document.querySelector('#productListSorter'));
     })
-    .catch(err => console.log('app', err))
+    .catch(err => {throw Error(err)})
