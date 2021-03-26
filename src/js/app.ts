@@ -32,7 +32,7 @@ const applySentenceCase = (string: string) => (string[0].toUpperCase() + string.
 // -----------------
 const ProductListWrapper: HTMLDivElement = document.querySelector('#productListWrapper');
 const ResultCount: HTMLSpanElement = document.querySelector('#resultCount');
-const GridListToggler: HTMLSpanElement = document.querySelector('#gridListToggle');
+const GridListToggler: HTMLDivElement = document.querySelector('#gridListToggle');
 // -----------------
 //
 // -----------------
